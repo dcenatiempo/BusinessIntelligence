@@ -1,9 +1,13 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 
-export default class Businesses extends React.Component {
-  render() {
-    return <Text>Foo bar shibby</Text>
-    // return <FlatList />
-  }
+import Chart from '../components/Chart';
+
+export default function Businesses(props) {
+  return (
+    <View>
+      <Text>Foo bar shibbyz</Text>
+      <Chart />
+    </View>
+  );
 }
