@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import Businesses from './screens/Businesses';
 import BusinessDetail from './screens/BusinessDetail';
 
