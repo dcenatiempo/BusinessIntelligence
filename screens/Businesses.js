@@ -105,13 +105,12 @@ export default function Businesses({ navigation, route }) {
           ]}
           onPress={onPressAlpha}>
           <Text>Alpha</Text>
-          {sortType === 'alpha' && (
-            <Icon
-              type="MaterialCommunityIcons"
-              name={!alphaAsc ? 'sort-ascending' : 'sort-descending'}
-              size={20}
-            />
-          )}
+          <Icon
+            style={[styles.icon, sortType != 'alpha' ? styles.hidden : {}]}
+            type="MaterialCommunityIcons"
+            name={!alphaAsc ? 'sort-ascending' : 'sort-descending'}
+            size={20}
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -120,13 +119,13 @@ export default function Businesses({ navigation, route }) {
           ]}
           onPress={onPressRev}>
           <Text>$ Rev</Text>
-          {sortType === 'rev' && (
-            <Icon
-              type="MaterialCommunityIcons"
-              name={revAsc ? 'sort-ascending' : 'sort-descending'}
-              size={20}
-            />
-          )}
+
+          <Icon
+            style={[styles.icon, sortType != 'rev' ? styles.hidden : {}]}
+            type="MaterialCommunityIcons"
+            name={revAsc ? 'sort-ascending' : 'sort-descending'}
+            size={20}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -157,9 +156,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+  },
+
+  icon: {
+    paddingLeft: 5,
   },
 
   selected: {
     backgroundColor: '#dddddd',
+  },
+
+  hidden: {
+    opacity: 0,
   },
 });

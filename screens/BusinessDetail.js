@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 import Chart from '../components/Chart';
+
+const { height, width } = Dimensions.get('screen');
 
 export default function BusinessDetail({ navigation }) {
   const business = navigation.getParam('business');
@@ -10,16 +12,13 @@ export default function BusinessDetail({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.container}>{business.name}</Text>
+      <Text style={styles.header}>{business.name}</Text>
       <Chart
         data={rev}
         labels={months}
-        style={
-          {
-            // height: 400,
-            // borderWidth: 1,
-          }
-        }
+        style={{
+          height: height - 140,
+        }}
         fontSize={12}
       />
     </View>
