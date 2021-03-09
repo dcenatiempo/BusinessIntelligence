@@ -35,8 +35,8 @@ export default function Businesses({ navigation, route }) {
   const listRef = useRef();
   const isMounted = useIsMounted();
   const [sortType, setSortType] = useState('alpha');
-  const [alphaAsc, setAlphaAsc] = useState(false);
-  const [revAsc, setRevAsc] = useState(false);
+  const [alphaAsc, setAlphaAsc] = useState(true);
+  const [revAsc, setRevAsc] = useState(true);
   const [sorted, setSorted] = useState(!isMounted ? alphaSort() : null);
 
   function renderItem({ item }) {
@@ -48,18 +48,18 @@ export default function Businesses({ navigation, route }) {
     );
   }
 
-  function alphaSort(dir) {
+  function alphaSort(asc) {
     return hydratedData.sort((a, b) => {
-      if (a.name > b.name) return dir ? -1 : 1;
-      if (a.name < b.name) return dir ? 1 : -1;
+      if (a.name > b.name) return asc ? -1 : 1;
+      if (a.name < b.name) return asc ? 1 : -1;
       return 0;
     });
   }
 
-  function revSort(dir) {
+  function revSort(asc) {
     return hydratedData.sort((a, b) => {
-      if (a.totalRev > b.totalRev) return dir ? -1 : 1;
-      if (a.totalRev < b.totalRev) return dir ? 1 : -1;
+      if (a.totalRev > b.totalRev) return asc ? 1 : -1;
+      if (a.totalRev < b.totalRev) return asc ? -1 : 1;
       return 0;
     });
   }
@@ -101,14 +101,14 @@ export default function Businesses({ navigation, route }) {
         <TouchableOpacity
           style={[
             styles.sortButton,
-            sortType == 'alpha' ? styles.selected : null,
+            sortType === 'alpha' ? styles.selected : null,
           ]}
           onPress={onPressAlpha}>
           <Text>Alpha</Text>
           {sortType === 'alpha' && (
             <Icon
               type="MaterialCommunityIcons"
-              name={alphaAsc ? 'sort-ascending' : 'sort-descending'}
+              name={!alphaAsc ? 'sort-ascending' : 'sort-descending'}
               size={20}
             />
           )}
@@ -116,7 +116,7 @@ export default function Businesses({ navigation, route }) {
         <TouchableOpacity
           style={[
             styles.sortButton,
-            sortType == 'rev' ? styles.selected : null,
+            sortType === 'rev' ? styles.selected : null,
           ]}
           onPress={onPressRev}>
           <Text>$ Rev</Text>
