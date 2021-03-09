@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Businesses from './screens/Businesses';
@@ -26,6 +27,12 @@ const MainNavigator = createStackNavigator({
   },
 });
 
-const App = createAppContainer(MainNavigator);
+const Navigation = createAppContainer(MainNavigator);
 
-export default App;
+export default function () {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+      <Navigation />
+    </SafeAreaView>
+  );
+}

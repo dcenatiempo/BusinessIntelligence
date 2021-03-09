@@ -17,9 +17,9 @@ export default function BusinessDetail({ navigation }) {
         data={rev}
         labels={months}
         style={{
-          height: height - 140,
+          flex: 1,
         }}
-        fontSize={12}
+        fontSize={14}
       />
     </View>
   );
@@ -28,6 +28,7 @@ export default function BusinessDetail({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingBottom: 10,
   },
 
   header: {

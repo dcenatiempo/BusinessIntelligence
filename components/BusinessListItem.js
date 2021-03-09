@@ -16,8 +16,8 @@ export default function BusinessListItem(props) {
   return (
     <TouchableOpacity style={styles.card} onPress={props.onPress}>
       <Text style={styles.name}>{item?.name}</Text>
-      <View>
-        <View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ flex: 1 }}>
           <Text>{address}</Text>
           <Text>
             {city}, {country}
