@@ -16,14 +16,17 @@ export default function BusinessListItem(props) {
   return (
     <TouchableOpacity style={styles.card} onPress={props.onPress}>
       <Text style={styles.name}>{item?.name}</Text>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={{ flex: 1 }}>
+      <View style={styles.infoWrapper}>
+        <View style={styles.addressWrapper}>
           <Text>{address}</Text>
           <Text>
             {city}, {country}
           </Text>
         </View>
-        <Text>{formatter.format(item.totalRev)}</Text>
+        <View style={styles.revWrapper}>
+          <Text>{formatter.format(item.aveRev)}</Text>
+          <Text>ave $/month</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -42,6 +45,18 @@ const styles = StyleSheet.create({
 
   name: {
     fontSize: 24,
+  },
+
+  infoWrapper: {
+    flexDirection: 'row',
+  },
+
+  addressWrapper: {
+    flex: 1,
+  },
+
+  revWrapper: {
+    alignItems: 'flex-end',
   },
 });
 

@@ -16,6 +16,7 @@ import { useIsMounted } from '../lib/hooks';
 const hydratedData = data.map((b) => {
   return {
     ...b,
+    // format chart data once here
     chartData: b.revenue.reduce(
       (obj, r) => {
         return {
@@ -25,9 +26,9 @@ const hydratedData = data.map((b) => {
       },
       { rev: [], months: [] },
     ),
-    totalRev:
-      Math.round(b.revenue.reduce((total, r) => total + r.value, 0) * 100) /
-      100,
+    // get ave monthly revenue once here
+    aveRev:
+      Math.round(b.revenue.reduce((tot, r) => tot + r.value, 0) * 100) / 100,
   };
 });
 
@@ -58,8 +59,8 @@ export default function Businesses({ navigation, route }) {
 
   function revSort(asc) {
     return hydratedData.sort((a, b) => {
-      if (a.totalRev > b.totalRev) return asc ? 1 : -1;
-      if (a.totalRev < b.totalRev) return asc ? -1 : 1;
+      if (a.aveRev > b.aveRev) return asc ? 1 : -1;
+      if (a.aveRev < b.aveRev) return asc ? -1 : 1;
       return 0;
     });
   }
@@ -101,7 +102,7 @@ export default function Businesses({ navigation, route }) {
         <TouchableOpacity
           style={[
             styles.sortButton,
-            sortType === 'alpha' ? styles.selected : null,
+            sortType === 'alpha' ? styles.selected : {},
           ]}
           onPress={onPressAlpha}>
           <Text>Alpha</Text>
@@ -113,10 +114,7 @@ export default function Businesses({ navigation, route }) {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[
-            styles.sortButton,
-            sortType === 'rev' ? styles.selected : null,
-          ]}
+          style={[styles.sortButton, sortType === 'rev' ? styles.selected : {}]}
           onPress={onPressRev}>
           <Text>$ Rev</Text>
 

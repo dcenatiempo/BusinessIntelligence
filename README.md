@@ -12,4 +12,4 @@ _must have xcode installed_
 
 ## Run app
 
-yarn run ios
+`yarn run ios`
